@@ -25,8 +25,12 @@ $this->title = Yii::t('app', 'All Events');
         $events = $dataProvider->getModels();
 
         foreach ($events as $event) {
+
+            $body = "<div>Event date : " . $event->event_date . "</div>"
+                    . "<div>Description : " . substr($event->description,0,200).' ............' . "</div>";
+            $footer = Html::a(Yii::t('app', 'More'), ['event/view', 'id' => $event->event_id], ['class' => 'btn btn-primary']);
             ?>
-        <a href="<?php echo $url = Url::to(['event/view', 'id' => $event->event_id]);?>"><div class="col-md-4">
+            <div class="col-md-4">
                 <div class="box box-solid box-primary">
                     <div class="box-header">
                         <h3 class="box-title" style=" white-space: nowrap; 
@@ -35,10 +39,13 @@ $this->title = Yii::t('app', 'All Events');
                             text-overflow: ellipsis;"><?php echo $event->name ?></h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-                        <div style="min-height: 200px;max-height: 200px;word-wrap: break-word;overflow: hidden"><?php echo $event->description ?></div>
+                        <div style="min-height: 100px;max-height: 300px;word-wrap: break-word;overflow: hidden"><?php echo $body ?></div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <div><?php echo $footer ?></div>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
-            </div></a>
+            </div>
             <?php
         }
         ?>

@@ -7,13 +7,7 @@ use yii\web\IdentityInterface;
 
 class User extends BaseUser implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
+     private static $users = [
         '100' => [
             'id' => '100',
             'username' => 'admin',
@@ -36,7 +30,8 @@ class User extends BaseUser implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return static::findOne($id);
+        //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
     }
 
     /**
@@ -44,13 +39,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        
     }
 
     /**
@@ -61,6 +50,8 @@ class User extends BaseUser implements IdentityInterface
      */
     public static function findByUsername($username)
     {
+        return static::find()->where(['username' => $username])->one();
+        
         foreach (self::$users as $user) {
             if (strcasecmp($user['username'], $username) === 0) {
                 return new static($user);
@@ -75,7 +66,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->user_id;
     }
 
     /**
@@ -83,7 +74,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        
     }
 
     /**
@@ -91,7 +82,7 @@ class User extends BaseUser implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        
     }
 
     /**

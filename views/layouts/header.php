@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+$user = \Yii::$app->user->identity;
 ?>
 
 <header class="main-header">
@@ -24,7 +26,7 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">                        
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs"><?php echo $user->username?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- Menu Footer-->

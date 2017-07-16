@@ -5,10 +5,12 @@ namespace app\models\base;
 use app\models\Event;
 use app\models\Task;
 use app\models\TaskStatus;
+use app\models\User;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\web\User;
+use yii\rbac\Assignment;
+
 
 /**
  * This is the model class for table "task".
@@ -47,6 +49,7 @@ class BaseTask extends ActiveRecord
     public function rules()
     {
         return [
+            [['description', 'name','duedate','event_id'], 'required'],
             [['description', 'note'], 'string'],
             [['event_id', 'reminder', 'parent_task_id', 'creator_id', 'task_status_id'], 'integer'],
             [['duedate'], 'safe'],

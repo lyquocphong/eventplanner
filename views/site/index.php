@@ -2,12 +2,13 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Event Planner Page';
+$this->title = '';
+$user = \Yii::$app->user->identity;
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Welcome to The Event Planner !</h1>
+        <h1>Welcome <?php echo $user->username?> to The Event Planner !</h1>
 
         <p class="lead">Get your events planned !</p>
 

@@ -13,7 +13,7 @@ use yii\helpers\Url;
                     'options' => ['class' => 'sidebar-menu'],
                     'items' => [
                         ['label' => 'All Events', 'icon' => 'calendar', 'url' => ['/event'],],
-                        ['label' => 'Create Event', 'icon' => 'plus', 'url' => ['/debug'],],
+                        ['label' => 'Create Event', 'icon' => 'plus', 'url' => ['event/create'],]                        
                     ],
                 ]
         )

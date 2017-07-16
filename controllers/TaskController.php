@@ -23,7 +23,7 @@ class TaskController extends Controller {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['POST','GET'],
                 ],
             ],
         ];
@@ -64,12 +64,25 @@ class TaskController extends Controller {
     public function actionCreate() {
         $model = new Task();
         $event_id = Yii::$app->request->get('event_id');
-
+        
+        if(empty($event_id) == true)
+        {
+            $this->redirect(['event/index']);
+        }
+        
+        $event = Event::findOne($event_id);
+        
+        if(empty($event) == true)
+        {
+            $this->redirect(['event/index']);
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->task_id]);
+            return $this->redirect(['event/view', 'id' => $model->event->event_id]);
         } else {
             return $this->render('create', [
-                        'model' => $model
+                        'model' => $model,
+                        'event' => $event
             ]);
         }
     }
@@ -82,9 +95,11 @@ class TaskController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
+        
+        $event_id = Yii::$app->request->get('event_id');        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->task_id]);
+            return $this->redirect(['event/view', 'id' => $model->event->event_id]);
         } else {
             return $this->render('update', [
                         'model' => $model,
@@ -99,9 +114,16 @@ class TaskController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
+        $model = $this->findModel($id);
+        
+        if(empty($model) == true)
+        {
+            $this->redirect(['event/index']);
+        }
+        
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['event/view', 'id' => $model->event_id]);
     }
 
     /**

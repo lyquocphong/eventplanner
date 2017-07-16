@@ -23,7 +23,7 @@ class EventController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET','POST'],
                 ],
             ],
         ];
@@ -37,7 +37,9 @@ class EventController extends Controller
     {
         $searchModel = new EventSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query = $dataProvider->query->orderBy('event_id DESC');
+        
+        $user = \Yii::$app->user->identity;        
+        $dataProvider->query = $dataProvider->query->andFilterWhere(['=', 'creator_id', $user->id])->orderBy('event_id DESC');
 
         return $this->render('index', [
             'searchModel' => $searchModel,

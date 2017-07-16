@@ -15,6 +15,6 @@ use app\models\base\BaseUser;
  *
  * @author Ly Quoc Phong
  */
-class User extends BaseUser{
+class User123 extends BaseUser{
     //put your code here
 }
