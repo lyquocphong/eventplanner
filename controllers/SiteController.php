@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\ContactForm;
 use app\models\Event;
 use app\models\LoginForm;
+use app\models\RegisterForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -39,6 +40,22 @@ class SiteController extends Controller {
         ];
     }
 
+    public function actionRegister() {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        /* Validate user exists */
+        $model = new RegisterForm();
+        if ($model->load(Yii::$app->request->post()) && $model->register()) {
+            return $this->goHome();
+        }
+
+        return $this->render('register', [
+                    'model' => $model
+        ]);
+    }
+
     /**
      * @inheritdoc
      */
@@ -60,7 +77,7 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        
+
         $user = \Yii::$app->user->identity;
 
         $events = Event::find()->where(['creator_id' => $user->id])->all();

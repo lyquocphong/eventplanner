@@ -9,7 +9,23 @@
 namespace app\models;
 
 use app\models\base\BaseEvent;
+use Yii;
 
-class Event extends BaseEvent{
-    //put your code here
+class Event extends BaseEvent {
+
+    public function sendMailToCreator() {
+
+        $to = $this->creator->profile->email;
+
+        Yii::$app->mail->compose('@app/mail/layouts/event_create_email', [
+                    'event_name' => $this->name,
+                    'event_date' => $this->event_date,
+                    'event_desc' => $this->description
+                ])
+                ->setFrom(Yii::$app->params['adminEmail'])
+                ->setTo('lyquocphong@gmail.com')
+                ->setSubject('You have created new event')
+                ->send();
+    }
+
 }

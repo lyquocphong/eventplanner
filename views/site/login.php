@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -29,20 +30,24 @@ $fieldOptions2 = [
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
-        <?= $form
-            ->field($model, 'username', $fieldOptions1)
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+        <?=
+                $form
+                ->field($model, 'username', $fieldOptions1)
+                ->label(false)
+                ->textInput(['placeholder' => $model->getAttributeLabel('username')])
+        ?>
 
-        <?= $form
-            ->field($model, 'password', $fieldOptions2)
-            ->label(false)
-            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+        <?=
+                $form
+                ->field($model, 'password', $fieldOptions2)
+                ->label(false)
+                ->passwordInput(['placeholder' => $model->getAttributeLabel('password')])
+        ?>
 
         <div class="row">
-            <div class="col-xs-8">
+            <!--<div class="col-xs-8">
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-            </div>
+            </div>-->
             <!-- /.col -->
             <div class="col-xs-4">
                 <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
@@ -53,9 +58,11 @@ $fieldOptions2 = [
 
         <?php ActiveForm::end(); ?>       
 
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
-
+        <!--<a href="#">I forgot my password</a><br>
+        //<a href="register.html" class="text-center">Register a new membership</a>-->
+        <?=Html::a(
+        'Register a new membership', ['/site/register'], ['data-method' => 'get', 'class' => 'text-center']
+        )?>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->

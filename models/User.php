@@ -60,7 +60,7 @@ class User extends BaseUser implements IdentityInterface
 
         return null;
     }
-
+   
     /**
      * @inheritdoc
      */

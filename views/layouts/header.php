@@ -31,9 +31,9 @@ $user = \Yii::$app->user->identity;
                     <ul class="dropdown-menu">
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
+<!--                            <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            </div>
+                            </div>-->
                             <div class="pull-right">
                                 <?=
                                 Html::a(

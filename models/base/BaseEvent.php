@@ -5,10 +5,10 @@ namespace app\models\base;
 use app\models\EventQuery;
 use app\models\EventStatus;
 use app\models\Task;
+use app\models\User;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\web\User;
 
 /**
  * This is the model class for table "{{%event}}".

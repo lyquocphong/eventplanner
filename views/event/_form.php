@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'event_date')->textInput() ?>
 
-    <!--<?= $form->field($model, 'creator_id')->textInput() ?>-->
+    <?= $form->field($model, 'creator_id')->hiddenInput(['value' => \Yii::$app->user->identity->user_id])->label(false); ?>
 
     <?= $form->field($model, 'reminder')->dropDownList(['1' => 'Yes', '0' => 'No']); ?>
 

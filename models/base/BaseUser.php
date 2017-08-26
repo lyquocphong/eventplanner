@@ -2,7 +2,12 @@
 
 namespace app\models\base;
 
+use app\models\Event;
+use app\models\Profile;
+use app\models\Task;
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user".
@@ -18,7 +23,7 @@ use Yii;
  * @property Task[] $tasks
  * @property Profile $profile
  */
-class BaseUser extends \yii\db\ActiveRecord
+class BaseUser extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -54,7 +59,7 @@ class BaseUser extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getAssignments()
     {
@@ -62,7 +67,7 @@ class BaseUser extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getEvents()
     {
@@ -70,7 +75,7 @@ class BaseUser extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getNotes()
     {
@@ -78,7 +83,7 @@ class BaseUser extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getTasks()
     {
@@ -86,7 +91,7 @@ class BaseUser extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getProfile()
     {
