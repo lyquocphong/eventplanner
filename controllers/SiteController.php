@@ -78,6 +78,10 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
 
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
+
         $user = \Yii::$app->user->identity;
 
         $events = Event::find()->where(['creator_id' => $user->id])->all();

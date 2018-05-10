@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Url;
 
 $this->title = '';
 $user = \Yii::$app->user->identity;
@@ -12,7 +13,7 @@ $user = \Yii::$app->user->identity;
 
         <p class="lead">Get your events planned !</p>
 
-        <p><a class="btn btn-lg btn-warning" href="http://www.yiiframework.com">Click here to start creating your event</a></p>
+        <p><a class="btn btn-lg btn-warning" href="<?php echo Url::to(['event/create', 'id' => $user->id]) ?>">Click here to start creating your event</a></p>
     </div>
 
     <div class="body-content">
